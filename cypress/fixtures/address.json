@@ -14,7 +14,7 @@
     }
   }
   },
-  "above8CharactersResponse": {
+  "aboveAndBelow8CharactersResponse": {
     "name": "CepPromiseError",
     "message": "CEP deve conter exatamente 8 caracteres.",
     "type": "validation_error",

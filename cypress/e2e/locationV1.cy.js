@@ -2,7 +2,6 @@ import { qase } from 'cypress-qase-reporter/mocha';
 
 describe('Brazil API Scenarios Search Location V1', () => {
 
-  // Teste vinculado ao Test Case 3 no Qase
   qase(3,
     it('Search Location with valid data', () => {
       const cityName = "Jaguaruana";
@@ -19,7 +18,6 @@ describe('Brazil API Scenarios Search Location V1', () => {
     })
   );
 
-  // Teste vinculado ao Test Case 4 no Qase
   qase(4,
     it('Search Location with invalid data', () => {
       const cityNames = ["@$%", "12123", "cd2i"];
@@ -39,7 +37,6 @@ describe('Brazil API Scenarios Search Location V1', () => {
     })
   );
 
-  // Teste genérico, sem vinculação Qase
   it('Search Location with city not found', () => {
     const cityName = "ThaisTeste";
     cy.fixture('location').then((fixture) => {

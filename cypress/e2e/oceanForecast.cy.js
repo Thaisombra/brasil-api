@@ -2,7 +2,6 @@ import { qase } from 'cypress-qase-reporter/mocha';
 
 describe('Brazil API Scenarios Search Location V1', () => {
 
-  // Teste vinculado ao Test Case 5 no Qase
   qase(5,
     it('Search Ocean Forecast with valid data', () => {
       const cityCode = 241;

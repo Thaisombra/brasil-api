@@ -1,0 +1,56 @@
+{
+  "validAddressResponse": {
+  "cep": "89010025",
+  "state": "SC",
+  "city": "Blumenau",
+  "neighborhood": "Centro",
+  "street": "Rua Doutor Luiz de Freitas Melro",
+  "service": "viacep",
+  "location": {
+    "type": "Point",
+    "coordinates": {
+      "longitude": "-49.0629788",
+      "latitude": "-26.9244749"
+    }
+  }
+  },
+  "above8CharactersResponse": {
+    "name": "CepPromiseError",
+    "message": "CEP deve conter exatamente 8 caracteres.",
+    "type": "validation_error",
+    "errors": [
+        {
+            "message": "CEP informado possui mais do que 8 caracteres.",
+            "service": "cep_validation"
+        }
+    ]
+  },
+  "invalidAddressResponse": { 
+  "name": "CepPromiseError",
+  "message": "Todos os serviços de CEP retornaram erro.",
+  "type": "service_error",
+  "errors": [
+    {
+      "name": "ServiceError",
+      "message": "CEP INVÁLIDO",
+      "service": "correios"
+    },
+    {
+      "name": "ServiceError",
+      "message": "CEP não encontrado na base do ViaCEP.",
+      "service": "viacep"
+    }
+  ]
+  },
+  "passingCepInBodyResponse": {
+    "name": "CepPromiseError",
+    "message": "CEP deve conter exatamente 8 caracteres.",
+    "type": "validation_error",
+    "errors": [
+        {
+            "message": "CEP informado possui mais do que 8 caracteres.",
+            "service": "cep_validation"
+        }
+    ]
+  }
+}

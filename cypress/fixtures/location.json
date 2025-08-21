@@ -1,0 +1,22 @@
+{
+  "validLocationResponse": {
+    "nome": "São Benedito",
+    "estado": "CE",
+    "id": 4750
+  },
+  "invalidLocationResponse": {
+    "message": "Nome da cidade inválido",
+    "type": "city_error",
+    "name": "CITY_NAME_ERROR"
+  },
+  "emptyLocationResponse": {
+    "message": "Nome da cidade inválido",
+    "type": "city_error",
+    "name": "CITY_NAME_ERROR"
+  },
+  "notFoundLocationResponse": {
+    "message": "Cidade não encontrada",
+    "type": "city_not_found",
+    "name": "CITY_NOT_FOUND"
+  }
+}

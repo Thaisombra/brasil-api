@@ -1,0 +1,44 @@
+{
+  "oceanForecastValidResponse":{
+  "cidade": "Rio de Janeiro",
+  "estado": "RJ",
+  "atualizado_em": "2020-12-27",
+  "ondas": [
+    {
+      "data": "27-12-2020",
+      "dados_ondas": [
+        {
+          "vento": 5.2,
+          "direcao_vento": "E",
+          "direcao_vento_desc": "Leste",
+          "altura_onda": 0.8,
+          "direcao_onda": "ESE",
+          "direcao_onda_desc": "Lés-sudeste",
+          "agitacao": "Fraco",
+          "hora": "00h Z"
+        },
+        {
+          "vento": 4.8,
+          "direcao_vento": "E",
+          "direcao_vento_desc": "Leste",
+          "altura_onda": 0.5,
+          "direcao_onda": "ESE",
+          "direcao_onda_desc": "Lés-sudeste",
+          "agitacao": "Fraco",
+          "hora": "03h Z"
+        }
+      ]
+    }
+  ]
+  },
+  "oceanForecastNotFoundResponse": {
+    "message": "Cidade não encontrada",
+    "type": "city_not_found",
+    "name": "CITY_NOT_FOUND"
+  },
+    "oceanForecastInvalidResponse": {
+        "message": "Nome da cidade inválido",
+        "type": "city_error",
+        "name": "CITY_NAME_ERROR"
+    }
+}

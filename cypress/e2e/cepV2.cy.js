@@ -1,6 +1,6 @@
 describe('Brazil API V2 Scenarios Search Location', () => {
   
-  it('Search CEP with valid data',{tags: ['QASE-1'] }, () => {
+  it('Search CEP with valid data',{qaseId: 1}, () => {
     const cep = 97050800
     cy.fixture('address').then((fixture) => {
       cy.request({
@@ -15,7 +15,7 @@ describe('Brazil API V2 Scenarios Search Location', () => {
   })
 
   // Needs to fail because sending CEP in body is not allowed
-  it('Search CEP by sending CEP in request body',{tags: ['QASE-2'] }, () => {
+  it('Search CEP by sending CEP in request body', () => {
     cy.fixture('address').then((fixture) => {
       cy.request({
         method: 'GET',
@@ -31,7 +31,7 @@ describe('Brazil API V2 Scenarios Search Location', () => {
   })
 
   // Partially correct: CEP less than 8 digits not properly indicated
-  it('Should return error when CEP has less or more than 8 characters', () => {
+  it('Should return error when CEP has less or more than 8 characters',{qaseId: 2}, () => {
     const boundaryCeps = [1234567, 888888888] 
     cy.fixture('address').then((fixture) => {
       boundaryCeps.forEach((cep) => {

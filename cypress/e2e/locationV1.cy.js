@@ -1,6 +1,6 @@
 describe('Brazil API Scenarios Search Location V1', () => {
 
-  it('Search Location with valid data', () => {
+  it('Search Location with valid data',{qaseId:3}, () => {
     const cityName = "Jaguaruana"
     cy.fixture('location').then((fixture) => {
       cy.request({
@@ -14,7 +14,7 @@ describe('Brazil API Scenarios Search Location V1', () => {
     })
   })
 
-  it('Search Location with invalid data', () => {
+  it('Search Location with invalid data', {qaseId:4}, () => {
     const cityNames = ["@$%", "12123", "cd2i"] 
 
     cy.fixture('location').then((fixture) => {

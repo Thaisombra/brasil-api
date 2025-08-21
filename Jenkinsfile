@@ -22,7 +22,7 @@ pipeline {
             }
         }
 
-        stage('Publish Allure Reports') {
+       stage('Publish Reports') {
             steps {
                 allure([
                     includeProperties: false,

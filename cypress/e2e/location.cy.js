@@ -1,6 +1,6 @@
 import { qase } from 'cypress-qase-reporter/mocha';
 
-describe('Brazil API Scenarios Search Location V1', () => {
+describe('Brazil API Scenarios Search Location', () => {
 
   qase(3,
     it('Search Location with valid data', () => {

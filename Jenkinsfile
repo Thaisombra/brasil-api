@@ -24,8 +24,10 @@ pipeline {
 
        stage('Publish Reports') {
             steps {
-                allure([
-                    results: [[path: 'allure-results']]
+               allure([
+                includeProperties: false,
+                reportBuildPolicy: 'ALWAYS',
+                reportDirs: ['allure-results']  
                 ])
             }
         }

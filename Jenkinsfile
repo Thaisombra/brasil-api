@@ -47,9 +47,10 @@ pipeline {
 
         stage('Run Cypress API Tests') {
             steps {
-                sh 'QASE_MODE=testops npx cypress run --browser chrome'
+                sh 'QASE_MODE=testops npx cypress run --headless'
             }
         }
+
     }
 
     post {

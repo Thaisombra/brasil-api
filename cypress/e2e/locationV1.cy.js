@@ -14,7 +14,7 @@ describe('Brazil API Scenarios Search Location V1', () => {
     })
   })
 
-  it.only('Search Location with invalid data', () => {
+  it('Search Location with invalid data', () => {
     const cityNames = ["@$%", "12123", "cd2i"] 
 
     cy.fixture('location').then((fixture) => {

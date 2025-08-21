@@ -1,15 +1,17 @@
-const { defineConfig } = require('cypress');
+import { defineConfig } from 'cypress';
+import { afterSpecHook } from 'cypress-qase-reporter/hooks';
 
-module.exports = defineConfig({
+export default defineConfig({
   reporter: 'cypress-multi-reporters',
   reporterOptions: {
     reporterEnabled: 'cypress-qase-reporter, mocha-allure-reporter',
+    
     cypressQaseReporterReporterOptions: {
       mode: "testops",
       debug: true,
       testops: {
         api: {
-          token: process.env.QASE_API_TOKEN,
+          token: process.env.QASE_API_TOKEN, // Use Jenkins credentials
         },
         project: "TPSOPA",
         uploadAttachments: true,
@@ -20,12 +22,15 @@ module.exports = defineConfig({
       framework: {
         cypress: {
           screenshotsFolder: 'cypress/screenshots',
-        }
-      }
+          videosFolder: 'cypress/videos',
+          uploadDelay: 10,
+        },
+      },
     },
+
     mochaAllureReporterReporterOptions: {
-      targetDir: 'allure-results'
-    }
+      targetDir: 'allure-results',
+    },
   },
 
   video: false,
@@ -36,9 +41,15 @@ module.exports = defineConfig({
       require('cypress-qase-reporter/plugin')(on, config);
       require('cypress-qase-reporter/metadata')(on);
 
+      on('after:spec', async (spec, results) => {
+        await afterSpecHook(spec, config);
+      });
+
       // Allure
       require('@shelex/cypress-allure-plugin/writer')(on, config);
+
       return config;
     },
+    specPattern: 'cypress/e2e/**/*.cy.{js,ts}', // Ajuste para seus testes
   },
 });

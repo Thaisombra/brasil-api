@@ -23,13 +23,14 @@ describe('Brazil API V2 Scenarios Search Location', () => {
     cy.fixture('address').then((fixture) => {
       cy.request({
         method: 'GET',
-        url: "https://brasilapi.com.br/api/cep/v2/${cep}",
+        url: `https://brasilapi.com.br/api/cep/v2/${cepRequest}`,
         headers: { 'Content-Type': 'application/json' },
         body: { cepRequest },
         failOnStatusCode: false
       }).then((response) => {
         expect(response.status).to.eq(400);
-        expect(response.body.errors[0].message).eq(fixture.aboveAndBelow8CharactersResponse.message);
+        expect(response.body.errors[0].message)
+          .to.eq(fixture.aboveAndBelow8CharactersResponse.message);
       });
     });
   });
@@ -47,10 +48,20 @@ describe('Brazil API V2 Scenarios Search Location', () => {
           expect(response.status).to.eq(400);
 
           if (Array.isArray(response.body.errors)) {
-            expect(response.body.errors).to.include(
-              response.body.message,
-              'Mensagem e erros estão inconsistentes'
+            const found = response.body.errors.some(
+              (err) => err.message === response.body.message
             );
+
+            if (!found) {
+              const errorsFormatted = response.body.errors
+                .map((e, i) => `[${i}]: ${e.message}`)
+                .join('\n');
+
+              throw new Error(
+                `Mensagem esperada: "${response.body.message}"\n` +
+                `Não encontrada no array de erros:\n${errorsFormatted}`
+              );
+            }
           } else {
             expect(response.body.message).to.eq(
               response.body.errors,

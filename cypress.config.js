@@ -3,7 +3,7 @@ const { defineConfig } = require('cypress');
 module.exports = defineConfig({
   reporter: 'cypress-multi-reporters',
   reporterOptions: {
-    reporterEnabled: 'cypress-qase-reporter',
+    reporterEnabled: 'cypress-qase-reporter, mocha-allure-reporter',
     cypressQaseReporterReporterOptions: {
       mode: "testops",
       debug: true,
@@ -11,7 +11,7 @@ module.exports = defineConfig({
         api: {
           token: process.env.QASE_API_TOKEN,
         },
-        project: "TPSOPA", 
+        project: "TPSOPA",
         uploadAttachments: true,
         run: {
           complete: true,
@@ -23,12 +23,22 @@ module.exports = defineConfig({
         }
       }
     },
+    mochaAllureReporterReporterOptions: {
+      targetDir: 'allure-results'
+    }
   },
+
   video: false,
+
   e2e: {
     setupNodeEvents(on, config) {
+      // Qase
       require('cypress-qase-reporter/plugin')(on, config);
       require('cypress-qase-reporter/metadata')(on);
+
+      // Allure
+      require('@shelex/cypress-allure-plugin/writer')(on, config);
+      return config;
     },
   },
 });

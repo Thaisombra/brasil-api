@@ -41,7 +41,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh 'npm ci'
-                sh 'npm install -D cypress-qase-reporter'
+                sh 'npm install -D cypress-qase-reporter @shelex/cypress-allure-plugin allure-commandline'
             }
         }
 
@@ -51,12 +51,26 @@ pipeline {
             }
         }
 
+        stage('Generate Allure Report') {
+            steps {
+                sh '''
+                    npx allure generate allure-results --clean -o allure-report
+                '''
+            }
+        }
+
+        stage('Publish Allure Report') {
+            steps {
+                allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+            }
+        }
     }
 
     post {
         always {
             archiveArtifacts artifacts: 'cypress/screenshots/**', allowEmptyArchive: true
             archiveArtifacts artifacts: 'cypress/videos/**', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true
         }
     }
 }

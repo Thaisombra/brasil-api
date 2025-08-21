@@ -53,15 +53,16 @@ pipeline {
 
         stage('Generate Allure Report') {
             steps {
-                sh '''
-                    npx allure generate allure-results --clean -o allure-report
-                '''
+                sh 'npx allure generate allure-results --clean -o allure-report'
             }
         }
 
         stage('Publish Allure Report') {
             steps {
-                allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+                allure([
+                    reportDir: 'allure-report',
+                    results: [[path: 'allure-results']]
+                ])
             }
         }
     }

@@ -19,7 +19,7 @@ describe('Brazil API Scenarios Ocean Forecast V1', () => {
   );
 
   qase(6,
-    it.only('Search Ocean Forecast with invalid data', () => {
+    it('Search Ocean Forecast with invalid data', () => {
       const cityCode = "abc";
       cy.fixture('address').then((fixture) => {
         cy.request({

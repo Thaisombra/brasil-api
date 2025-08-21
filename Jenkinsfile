@@ -21,13 +21,12 @@ pipeline {
                 sh 'npx cypress run'
             }
         }
-
-       stage('Publish Reports') {
+        stage('Publish Reports') {
             steps {
-               allure([
-                includeProperties: false,
-                reportBuildPolicy: 'ALWAYS',
-                reportDirs: ['allure-results']  
+                allure([
+                    includeProperties: false,
+                    jdk: '',
+                    results: [[path: 'allure-results']]
                 ])
             }
         }

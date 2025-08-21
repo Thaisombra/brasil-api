@@ -45,7 +45,7 @@ describe('Brazil API V2 Scenarios Search Location', () => {
           failOnStatusCode: false
         }).then((response) => {
           expect(response.status).to.eq(400);
-          cy.validateResponseFields(fixture.aboveAndBelow8CharactersResponse, response.body);
+          cy.validateResponseFields(fixture.aboveAndBelow8CharactersResponse, response.body.errors.message);
         });
       });
     })

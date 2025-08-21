@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'node18'  
+        nodejs 'node18'
     }
 
     environment {
-        QASE_API_TOKEN = credentials('QASE_API_TOKEN') 
+        QASE_API_TOKEN = credentials('QASE_API_TOKEN')
     }
 
     stages {
@@ -20,14 +20,12 @@ pipeline {
             steps {
                 sh 'npx cypress run'
             }
-        }
-        stage('Publish Reports') {
-            steps {
-                allure([
-                    includeProperties: false,
-                    jdk: '',
-                    results: [[path: 'allure-results']]
-                ])
+            post {
+                always {
+                    allure includeProperties: false,
+                           jdk: '',
+                           results: [[path: 'allure-results']]
+                }
             }
         }
     }

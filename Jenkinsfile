@@ -18,7 +18,7 @@ pipeline {
 
         stage('Run Cypress API Tests') {
             steps {
-                sh 'npx cypress run --browser none --record=false'
+                sh 'npx cypress run --headed'
             }
         }
     }

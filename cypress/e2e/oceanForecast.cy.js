@@ -1,6 +1,6 @@
 describe('Brazil API Scenarios Search Location V1', () => {
   
-    it.only('Search Ocean Forecast with valid data', () => {
+    it('Search Ocean Forecast with valid data', () => {
     const cityCode = 241
     cy.fixture('address').then((fixture) => {
       cy.request({

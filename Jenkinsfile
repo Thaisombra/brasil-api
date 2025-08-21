@@ -41,12 +41,13 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh 'npm ci'
+                sh 'npm install -D cypress-qase-reporter'
             }
         }
 
         stage('Run Cypress API Tests') {
             steps {
-                sh 'npx cypress run --headed'
+                sh 'QASE_MODE=testops npx cypress run --browser chrome'
             }
         }
     }

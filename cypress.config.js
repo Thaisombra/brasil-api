@@ -1,16 +1,34 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
+  reporter: 'cypress-multi-reporters',
+  reporterOptions: {
+    reporterEnabled: 'cypress-qase-reporter',
+    cypressQaseReporterReporterOptions: {
+      mode: "testops",
+      debug: true,
+      testops: {
+        api: {
+          token: process.env.QASE_API_TOKEN,
+        },
+        project: "TPSOPA", 
+        uploadAttachments: true,
+        run: {
+          complete: true,
+        },
+      },
+      framework: {
+        cypress: {
+          screenshotsFolder: 'cypress/screenshots',
+        }
+      }
+    },
+  },
+  video: false,
   e2e: {
     setupNodeEvents(on, config) {
-      const qase = require('@qase/cypress');
-      qase(on, config, {
-        apiToken: process.env.QASE_API_TOKEN, 
-        projectCode: 'TPSOPA',              
-        runTitle: 'Execução automatizada Jenkins - Brasil API',
-      });
-
-      return config;
+      require('cypress-qase-reporter/plugin')(on, config);
+      require('cypress-qase-reporter/metadata')(on);
     },
   },
 });

@@ -25,8 +25,6 @@ pipeline {
        stage('Publish Reports') {
             steps {
                 allure([
-                    includeProperties: false,
-                    jdk: '',
                     results: [[path: 'allure-results']]
                 ])
             }

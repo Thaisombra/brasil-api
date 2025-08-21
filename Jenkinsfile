@@ -59,10 +59,13 @@ pipeline {
 
         stage('Publish Allure Report') {
             steps {
-                allure([
-                    reportDir: 'allure-report',
-                    results: [[path: 'allure-results']]
-                ])
+                // Publica o relatório no Jenkins
+                publishHTML([allowMissing: true,
+                             alwaysLinkToLastBuild: true,
+                             keepAll: true,
+                             reportDir: 'allure-report',
+                             reportFiles: 'index.html',
+                             reportName: 'Allure Report'])
             }
         }
     }

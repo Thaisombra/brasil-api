@@ -2,11 +2,12 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'node18'
+        nodejs 'node20'
     }
 
     environment {
         QASE_API_TOKEN = credentials('QASE_API_TOKEN')
+        DISPLAY = ':99'
     }
 
     stages {
@@ -18,7 +19,8 @@ pipeline {
 
         stage('Run Cypress Tests') {
             steps {
-                sh 'npx cypress run'
+                sh 'Xvfb :99 -screen 0 1920x1080x24 &'
+                sh 'npx cypress run --record=false'
             }
         }
     }
@@ -27,6 +29,7 @@ pipeline {
         always {
             archiveArtifacts artifacts: 'cypress/screenshots/**', allowEmptyArchive: true
             archiveArtifacts artifacts: 'cypress/videos/**', allowEmptyArchive: true
+
             junit 'cypress/results/*.xml'
         }
     }

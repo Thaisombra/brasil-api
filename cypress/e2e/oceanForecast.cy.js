@@ -28,7 +28,7 @@ describe('Brazil API Scenarios Ocean Forecast V1', () => {
           headers: { 'Content-Type': 'application/json' },
           failOnStatusCode: false
         }).then((response) => {
-          expect(response.status).to.eq(404);
+          expect(response.status).to.eq(400);
           cy.validateResponseFields(fixture.oceanForecastInvalidResponse, response.body);
         });
       });

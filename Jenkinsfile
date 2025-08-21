@@ -20,11 +20,6 @@ pipeline {
             steps {
                 sh 'npx cypress run'
             }
-            post {
-                always {
-                    allure adapters: [allureAdapter(path: 'allure-results')]
-                }
-            }
         }
     }
 

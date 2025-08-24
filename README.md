@@ -25,7 +25,7 @@ Projeto de automação desenvolvido como **teste técnico** para o processo sele
 ├── qase.config.js               # Integração com Qase
 ├── package.json
 └── README.md
-
+```
 
 ## ⚙️ Configuração do Ambiente  
 
@@ -33,14 +33,17 @@ Projeto de automação desenvolvido como **teste técnico** para o processo sele
 ```bash
 git clone https://github.com/Thaisombra/brasil-api.git
 cd brasil-api
+```
 
-### 2. Instalar dependências 
+### 2. Instalar dependências
+```bash 
 npm install
-```bash
+```
 
 ### 3. Executar os testes localmente 
-npx cypress run
 ```bash
+npx cypress run
+```
 
 ## 🏗️ Pipeline no Jenkins  
 

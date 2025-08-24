@@ -16,13 +16,13 @@ Projeto de automação desenvolvido como **teste técnico** para o processo sele
 ```bash
 ├── cypress
 │   ├── e2e
-│   │   ├── cepv2.spec.js        # Testes do endpoint CEP v2
-│   │   ├── location.spec.js     # Testes do endpoint Localidades
-│   │   └── oceanForecast.spec.js# Testes do endpoint Previsão Oceânica
-│   ├── fixtures                 # Massa de dados
-│   ├── support                  # Comandos customizados e configs
-├── jenkinsfile                  # Pipeline configurado para Jenkins
-├── qase.config.js               # Integração com Qase
+│   │   ├── cepv2.spec.js         # Testes do endpoint CEP v2
+│   │   ├── location.spec.js      # Testes do endpoint Localidades
+│   │   └── oceanForecast.spec.js # Testes do endpoint Previsão Oceânica
+│   ├── fixtures                  # Massa de dados
+│   ├── support                   # Comandos customizados e configs
+├── jenkinsfile                   # Pipeline configurado para Jenkins
+├── qase.config.js                # Integração com Qase
 ├── package.json
 └── README.md
 ```
